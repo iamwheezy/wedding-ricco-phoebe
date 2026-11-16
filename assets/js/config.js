@@ -44,6 +44,6 @@ window.WEDDING = {
   maxGuests: 5,
 
   // ---- Media --------------------------------------------------
-  music: "",  // e.g. "assets/audio/song.mp3" (leave empty to hide the music button)
+  music: "assets/audio/song.mp3",  // e.g. "assets/audio/song.mp3" (leave empty to hide the music button)
   video: "assets/video/prewedding.mp4"   // e.g. "assets/video/prewedding.mp4" (leave empty to hide the video)
 };
