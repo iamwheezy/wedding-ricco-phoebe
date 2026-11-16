@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Wedding of Ricco &amp; Phoebe</title>
+  <meta name="description" content="You are invited to the wedding of Ricco & Phoebe — 28 December 2026, Karanganyar.">
+  <meta name="theme-color" content="#2f3b2b">
+  <meta property="og:title" content="The Wedding of Ricco & Phoebe">
+  <meta property="og:description" content="Monday, 28 December 2026 · Gedung MCC, Karanganyar">
+  <meta property="og:image" content="https://iamwheezy.github.io/wedding-ricco-phoebe/assets/img/og.jpg">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="assets/img/cover.webp">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="locked">
+
+  <!-- floating sparkles -->
+  <div class="sparkles" aria-hidden="true"></div>
+
+  <!-- ===================== COVER ===================== -->
+  <section id="cover" class="cover">
+    <div class="cover-bg" style="background-image:url('assets/img/cover.webp')"></div>
+    <div class="cover-inner">
+      <p class="eyebrow">The Wedding of</p>
+      <h1 class="script names"><span data-bind="groom.nickname">Ricco</span> <em>&amp;</em> <span data-bind="bride.nickname">Phoebe</span></h1>
+      <p class="cover-date" data-bind="dateText"></p>
+      <div class="guest-box">
+        <p class="small">Dear</p>
+        <p class="guest-name" id="guestName">Our Beloved Guest</p>
+        <p class="small muted">You are cordially invited</p>
+      </div>
+      <button class="btn btn-light" id="openBtn">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5Z"/></svg>
+        Open Invitation
+      </button>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <!-- ===================== HERO ===================== -->
+    <section class="hero">
+      <div class="hero-bg" style="background-image:url('assets/img/hero.webp')"></div>
+      <div class="hero-inner reveal">
+        <p class="eyebrow light">We are getting married</p>
+        <h2 class="script names light"><span data-bind="groom.nickname"></span> &amp; <span data-bind="bride.nickname"></span></h2>
+        <p class="hero-date light" data-bind="dateText"></p>
+      </div>
+      <div class="scroll-hint" aria-hidden="true"><span></span></div>
+    </section>
+
+    <!-- ===================== QUOTE ===================== -->
+    <section class="section quote">
+      <div class="ornament reveal" aria-hidden="true"></div>
+      <blockquote class="reveal">
+        “Once upon a time, two hearts found their way to one another — and chose to write the rest of their story together.”
+      </blockquote>
+      <div class="ornament flip reveal" aria-hidden="true"></div>
+    </section>
+
+    <!-- ===================== COUPLE ===================== -->
+    <section class="section couple" id="couple">
+      <p class="eyebrow reveal">Bride &amp; Groom</p>
+      <h2 class="title reveal">Two Souls, One Story</h2>
+      <p class="lead reveal">With joyful hearts and the blessing of our families, we invite you to celebrate our wedding.</p>
+
+      <div class="person reveal">
+        <div class="arch"><img src="assets/img/groom.webp" alt="The groom" loading="lazy"></div>
+        <h3 class="script" data-bind="groom.nickname"></h3>
+        <p class="fullname" data-bind="groom.fullName"></p>
+        <p class="parents" data-bind-html="groom.parents"></p>
+        <a class="ig" data-ig="groom" target="_blank" rel="noopener" hidden>Instagram</a>
+      </div>
+
+      <div class="amp script reveal">&amp;</div>
+
+      <div class="person reveal">
+        <div class="arch"><img src="assets/img/bride.webp" alt="The bride" loading="lazy" width="667" height="1000"></div>
+        <h3 class="script" data-bind="bride.nickname"></h3>
+        <p class="fullname" data-bind="bride.fullName"></p>
+        <p class="parents" data-bind-html="bride.parents"></p>
+        <a class="ig" data-ig="bride" target="_blank" rel="noopener" hidden>Instagram</a>
+      </div>
+    </section>
+
+    <!-- ===================== COUNTDOWN ===================== -->
+    <section class="countdown-wrap">
+      <div class="parallax" style="background-image:url('assets/img/countdown.webp')"></div>
+      <div class="countdown-inner reveal">
+        <p class="eyebrow light">Counting down to forever</p>
+        <h2 class="title light">Save The Date</h2>
+        <div class="countdown" id="countdown">
+          <div><span id="cd-d">00</span><small>Days</small></div>
+          <div><span id="cd-h">00</span><small>Hours</small></div>
+          <div><span id="cd-m">00</span><small>Minutes</small></div>
+          <div><span id="cd-s">00</span><small>Seconds</small></div>
+        </div>
+        <p class="cd-done" id="cd-done" hidden>Today is the day! ♡</p>
+        <a class="btn btn-light" id="calBtn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H5V10h14v10Z"/></svg>
+          Add to Google Calendar
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== EVENT ===================== -->
+    <section class="section event" id="event">
+      <p class="eyebrow reveal">When &amp; Where</p>
+      <h2 class="title reveal">The Celebration</h2>
+
+      <div class="card event-card reveal">
+        <div class="card-photo" style="background-image:url('assets/img/event.webp')"></div>
+        <h3 class="script" data-bind="eventTitle"></h3>
+        <a class="event-line link" id="dateLink" target="_blank" rel="noopener" title="Save to Google Calendar">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 16H5V10h14v10Z"/></svg>
+          <span><strong data-bind="dateText"></strong><br><span data-bind="timeText"></span></span>
+        </a>
+        <a class="event-line link" id="venueLink" target="_blank" rel="noopener" title="Open in Google Maps">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+          <span><strong data-bind="venueName"></strong><br><span data-bind="venueAddress"></span></span>
+        </a>
+        <p class="hint">Tap the date to save it · Tap the address for directions</p>
+      </div>
+    </section>
+
+    <!-- ===================== MAP ===================== -->
+    <section class="section map-section" id="map">
+      <p class="eyebrow reveal">Location</p>
+      <h2 class="title reveal">Find Your Way</h2>
+      <div class="map-frame reveal">
+        <iframe id="mapFrame" title="Venue map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <a class="btn btn-dark reveal" id="mapBtn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5Z"/></svg>
+        Open Google Maps
+      </a>
+    </section>
+
+    <!-- ===================== GALLERY ===================== -->
+    <section class="section gallery-section" id="gallery">
+      <p class="eyebrow reveal">Moments</p>
+      <h2 class="title reveal">Our Little Fairy Tale</h2>
+      <div class="video-wrap reveal" id="videoWrap" hidden>
+        <video id="preVideo" controls playsinline preload="none" poster="assets/img/hero.webp"></video>
+      </div>
+      <div class="gallery">
+        <img class="reveal tall" src="assets/img/g1.webp" alt="" loading="lazy">
+        <img class="reveal" src="assets/img/g2.webp" alt="" loading="lazy">
+        <img class="reveal tall" src="assets/img/g3.webp" alt="" loading="lazy">
+        <img class="reveal" src="assets/img/g6.webp" alt="" loading="lazy">
+        <img class="reveal tall" src="assets/img/g4.webp" alt="" loading="lazy">
+        <img class="reveal tall" src="assets/img/g5.webp" alt="" loading="lazy">
+        <img class="reveal" src="assets/img/g8.webp" alt="" loading="lazy">
+        <img class="reveal tall" src="assets/img/g7.webp" alt="" loading="lazy">
+      </div>
+    </section>
+
+    <!-- ===================== RSVP ===================== -->
+    <section class="section rsvp" id="rsvp">
+      <p class="eyebrow reveal">Kindly Reply</p>
+      <h2 class="title reveal">RSVP</h2>
+      <p class="lead reveal">Please let us know if you can join our celebration.</p>
+
+      <form class="card form reveal" id="rsvpForm" novalidate>
+        <label>Full Name
+          <input type="text" name="name" id="f-name" required maxlength="80" autocomplete="name" placeholder="Your full name">
+        </label>
+        <fieldset>
+          <legend>Will you attend?</legend>
+          <div class="choice">
+            <label><input type="radio" name="attendance" value="Attending" checked><span>Joyfully Attending</span></label>
+            <label><input type="radio" name="attendance" value="Not Attending"><span>Regretfully Decline</span></label>
+          </div>
+        </fieldset>
+        <label id="guestsField">Number of Guests
+          <select name="guests" id="f-guests"></select>
+        </label>
+        <label>Wishes &amp; Message
+          <textarea name="message" id="f-message" rows="4" maxlength="500" placeholder="Write your wishes for the couple…"></textarea>
+        </label>
+        <button class="btn btn-dark full" type="submit" id="rsvpBtn">Send RSVP</button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- ===================== WISHES ===================== -->
+    <section class="section wishes" id="wishes">
+      <p class="eyebrow reveal">Wedding Wishes</p>
+      <h2 class="title reveal">Words of Love</h2>
+      <p class="wish-count reveal" id="wishCount"></p>
+      <div class="wish-list" id="wishList" aria-live="polite">
+        <p class="empty">Be the first to send your wishes ♡</p>
+      </div>
+    </section>
+
+    <!-- ===================== GIFT ===================== -->
+    <section class="section gift" id="gift">
+      <p class="eyebrow reveal">Wedding Gift</p>
+      <h2 class="title reveal">Wanna give us some gifts?</h2>
+      <p class="lead reveal">Your presence is the greatest gift. Should you wish to bless us further, you may do so here.</p>
+
+      <div class="card gift-card reveal">
+        <p class="gift-label">Bank Transfer</p>
+        <p class="bank" data-bind="bankName"></p>
+        <p class="acc" data-bind="bankAccount"></p>
+        <p class="holder">a.n. <span data-bind="bankHolder"></span></p>
+        <button class="btn btn-outline" data-copy="bankAccount">Copy Account Number</button>
+      </div>
+
+      <div class="card gift-card reveal">
+        <p class="gift-label">Send a Gift</p>
+        <p class="holder"><strong data-bind="giftRecipient"></strong></p>
+        <p class="addr" data-bind="giftAddress"></p>
+        <button class="btn btn-outline" data-copy="giftAddress">Copy Address</button>
+      </div>
+    </section>
+
+    <!-- ===================== CLOSING ===================== -->
+    <section class="closing">
+      <div class="parallax" style="background-image:url('assets/img/closing.webp')"></div>
+      <div class="closing-inner reveal">
+        <p class="light">It would be an honor and a joy to have you with us as we begin our happily ever after.</p>
+        <p class="eyebrow light">With love,</p>
+        <h2 class="script names light"><span data-bind="groom.nickname"></span> &amp; <span data-bind="bride.nickname"></span></h2>
+        <p class="light small">28 · 12 · 2026</p>
+      </div>
+    </section>
+
+    <footer class="footer">Made with ♡ for Ricco &amp; Phoebe</footer>
+  </main>
+
+  <!-- floating music button -->
+  <button class="music-btn" id="musicBtn" aria-label="Play or pause music" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3v10.55A4 4 0 1 0 14 17V7h4V3h-6Z"/></svg>
+  </button>
+  <audio id="bgm" loop preload="none"></audio>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
