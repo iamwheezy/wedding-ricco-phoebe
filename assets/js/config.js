@@ -40,10 +40,10 @@ window.WEDDING = {
 
   // ---- RSVP / Google Sheets ----------------------------------
   // Paste your Apps Script Web App URL here (ends with /exec)
-  scriptURL: "",
+  scriptURL: "https://script.google.com/macros/s/AKfycbyeLfbxRwNUCHuPXMWD_LXJ8viRxWI9UYtNaHPU-zthGo409qXPjpkppUjuXRNi0lJXEA/exec",
   maxGuests: 5,
 
   // ---- Media --------------------------------------------------
   music: "",  // e.g. "assets/audio/song.mp3" (leave empty to hide the music button)
-  video: ""   // e.g. "assets/video/prewedding.mp4" (leave empty to hide the video)
+  video: "assets/video/prewedding.mp4"   // e.g. "assets/video/prewedding.mp4" (leave empty to hide the video)
 };

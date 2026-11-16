@@ -63,7 +63,14 @@
     setTimeout(() => ($("#cover").style.display = "none"), 1200);
   });
 
-  if (C.video) { $("#preVideo").src = C.video; $("#videoWrap").hidden = false; }
+  if (C.video) {
+    const v = $("#preVideo");
+    v.src = C.video; $("#videoWrap").hidden = false;
+    // pause background music while the video plays, resume after
+    v.addEventListener("play", () => { if (!audio.paused) { audio.pause(); musicBtn.classList.remove("playing"); v.dataset.music = "1"; } });
+    const resume = () => { if (v.dataset.music) { delete v.dataset.music; playMusic(); } };
+    v.addEventListener("pause", resume); v.addEventListener("ended", resume);
+  }
 
   /* ---------- 5. Countdown ---------- */
   const target = new Date(C.eventStart).getTime();

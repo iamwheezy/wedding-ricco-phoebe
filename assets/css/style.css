@@ -144,7 +144,7 @@ main{background:var(--ivory);position:relative}
 .map-frame iframe{width:100%;height:100%;border:0;display:block}
 
 /* ============ Gallery ============ */
-.video-wrap{margin:0 auto 1.2rem;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.video-wrap{max-width:340px;margin:0 auto 1.6rem;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
 .video-wrap video{width:100%;display:block;background:#000}
 .gallery{columns:2;column-gap:.7rem}
 .gallery img{width:100%;margin-bottom:.7rem;border-radius:14px;break-inside:avoid;cursor:zoom-in;box-shadow:0 10px 25px -18px rgba(0,0,0,.5)}
