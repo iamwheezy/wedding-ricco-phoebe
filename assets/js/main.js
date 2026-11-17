@@ -1,5 +1,16 @@
 (function () {
   "use strict";
+  // Safety net: the cover always opens, even if another part of the script fails
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest || !e.target.closest("#openBtn")) return;
+    const cv = document.getElementById("cover");
+    setTimeout(() => {
+      if (document.body.classList.contains("locked")) {
+        cv.classList.add("opened"); document.body.classList.remove("locked");
+        setTimeout(() => (cv.style.display = "none"), 1200);
+      }
+    }, 300);
+  });
   const C = window.WEDDING;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
