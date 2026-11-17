@@ -1,5 +1,5 @@
 /* =============================================================
-   WEDDING CONFIG — edit the values below, nothing else needed.
+   WEDDING CONFIG: edit the values below, nothing else needed.
    ============================================================= */
 window.WEDDING = {
   // ---- Couple -------------------------------------------------
@@ -11,7 +11,7 @@ window.WEDDING = {
   },
   bride: {
     fullName: "Phoebe Syifa Jindra Maharani",
-    nickname: "Phoebe",
+    nickname: "Syifa",
     parents: "Daughter of Drs. Surono<br>& Mrs. Lindawati",
     instagram: ""
   },
@@ -22,7 +22,7 @@ window.WEDDING = {
   eventEnd:   "2026-12-28T16:00:00+07:00",
   eventTitle: "Wedding Reception",
   dateText:   "Monday, 28 December 2026",
-  timeText:   "13.00 WIB — Finish",
+  timeText:   "13.00 WIB until Finish",
 
   // ---- Venue --------------------------------------------------
   venueName: "Gedung MCC",
@@ -36,7 +36,7 @@ window.WEDDING = {
   bankAccount: "0153823992",
   bankHolder: "Syifa J",
   giftAddress: "Jl. Mujair I No.03/07, Tegalasri, Bejen, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57711",
-  giftRecipient: "Phoebe & Ricco",
+  giftRecipient: "Syifa & Ricco",
 
   // ---- RSVP / Google Sheets ----------------------------------
   // Paste your Apps Script Web App URL here (ends with /exec)
