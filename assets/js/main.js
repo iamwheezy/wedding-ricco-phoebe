@@ -6,8 +6,6 @@
   const get = (path) => path.split(".").reduce((o, k) => (o ? o[k] : ""), C);
 
   /* ---------- 1. Bind config values ---------- */
-  C.groom.initial = (C.groom.nickname || "R").charAt(0);
-  C.bride.initial = (C.bride.nickname || "S").charAt(0);
   $$("[data-bind]").forEach((el) => (el.textContent = get(el.dataset.bind)));
   $$("[data-bind-html]").forEach((el) => (el.innerHTML = get(el.dataset.bindHtml)));
   $$("[data-ig]").forEach((el) => {
@@ -57,88 +55,13 @@
     if (document.hidden && !audio.paused) { audio.pause(); musicBtn.classList.remove("playing"); audio.dataset.resume = "1"; }
     else if (!document.hidden && audio.dataset.resume) { delete audio.dataset.resume; playMusic(); }
   });
-  /* Envelope flap with lace edge (drawn to the exact screen size) */
-  const NS = "http://www.w3.org/2000/svg";
-  function drawFlap() {
-    const flap = $("#envFlap"); if (!flap) return;
-    const w = flap.clientWidth, h = flap.clientHeight;
-    const tri = `M0 0 L${w} 0 L${w / 2} ${h} Z`;
-    const L = Math.hypot(w / 2, h);
-    const edges = [
-      { p0: [0, 0], d: [w / 2 / L, h / L], n: [-h / L, (w / 2) / L] },
-      { p0: [w, 0], d: [-w / 2 / L, h / L], n: [h / L, (w / 2) / L] }
-    ];
-    let lace = "";
-    const step = 13;
-    edges.forEach((e) => {
-      const at = (t, off) => [e.p0[0] + e.d[0] * t + e.n[0] * off, e.p0[1] + e.d[1] * t + e.n[1] * off];
-      // inner band
-      const a = at(0, -4), b = at(L, -4), c = at(L, 7), d = at(0, 7);
-      lace += `<path d="M${a} L${b} L${c} L${d}Z" fill="#f8f2e6" stroke="#ddcfb2" stroke-width=".6"/>`;
-      for (let t = step / 2, i = 0; t < L - 6; t += step, i++) {
-        const [x1, y1] = at(t, 9), [x2, y2] = at(t, 1.5), [x3, y3] = at(t + step / 2, 15.5), [x4, y4] = at(t, 22);
-        lace += `<circle cx="${x1}" cy="${y1}" r="8.4" fill="#faf6ee" fill-opacity=".96" stroke="#d9caab" stroke-width=".6"/>`;
-        lace += `<circle cx="${x1}" cy="${y1}" r="6.4" fill="none" stroke="#cdbb95" stroke-width=".9" stroke-dasharray=".1 2.2" stroke-linecap="round"/>`;
-        lace += `<path d="M${at(t - 3.5, 6)} Q${at(t, 12.5)} ${at(t + 3.5, 6)}" fill="none" stroke="#d5c4a0" stroke-width=".6"/>`;
-        lace += `<circle cx="${x2}" cy="${y2}" r=".9" fill="#d6c6a4"/>`;
-        if (t + step < L - 6) lace += `<circle cx="${x3}" cy="${y3}" r="3" fill="#f9f4ea" stroke="#d8c8a8" stroke-width=".6"/>`;
-        if (i % 3 === 1) {
-          // little flower motif hanging from the lace
-          let petals = "";
-          for (let k = 0; k < 5; k++) petals += `<ellipse cx="0" cy="-3.2" rx="1.9" ry="3.2" transform="rotate(${k * 72})"/>`;
-          lace += `<g transform="translate(${x4} ${y4})" fill="#f9f4ea" stroke="#d3c19e" stroke-width=".5">${petals}<circle r="1.2" fill="#cdb98f" stroke="none"/></g>`;
-        }
-      }
-    });
-    $("#flapSvg").innerHTML =
-      `<defs>
-        <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6efe2"/><stop offset="1" stop-color="#ebe1cd"/></linearGradient>
-        <pattern id="gr" width="280" height="280" patternUnits="userSpaceOnUse"><image href="assets/svg/grain.svg" width="280" height="280"/></pattern>
-        <filter id="ls" x="-5%" y="-5%" width="110%" height="120%"><feDropShadow dx="0" dy="1.6" stdDeviation="1.2" flood-color="#6b5428" flood-opacity=".28"/></filter>
-        <clipPath id="fc"><path d="${tri}"/></clipPath>
-      </defs>
-      <g filter="url(#ls)">${lace}</g>
-      <path d="${tri}" fill="url(#fg)"/>
-      <path d="${tri}" fill="url(#gr)"/>
-      <g clip-path="url(#fc)"><rect width="${w}" height="${h}" fill="url(#hl)" opacity="0"/></g>`;
-    $("#flapBackSvg").innerHTML =
-      `<defs><linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9dfcb"/><stop offset="1" stop-color="#ddd0b6"/></linearGradient></defs>
-       <path d="${tri}" fill="url(#bg2)"/>`;
-  }
-  drawFlap();
-  let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(drawFlap, 150); });
-
-  /* Envelope opening sequence */
-  const cover = $("#cover");
-  let opened = false;
-  const burst = () => {
-    const b = $("#sealBurst");
-    for (let i = 0; i < 26; i++) {
-      const p = document.createElement("i");
-      const a = Math.random() * Math.PI * 2, r = 60 + Math.random() * 110;
-      p.style.setProperty("--x", Math.cos(a) * r + "px");
-      p.style.setProperty("--y", Math.sin(a) * r + "px");
-      p.style.setProperty("--s", (0.5 + Math.random()).toFixed(2));
-      p.style.animationDelay = Math.random() * 0.15 + "s";
-      b.appendChild(p);
-    }
-    setTimeout(() => (b.innerHTML = ""), 1600);
-  };
-  const openInvitation = () => {
-    if (opened) return; opened = true;
+  $("#openBtn").addEventListener("click", () => {
+    $("#cover").classList.add("opened");
+    document.body.classList.remove("locked");
+    window.scrollTo(0, 0);
     playMusic();
-    burst();
-    cover.classList.add("opening");                       // seal press + flap opens
-    setTimeout(() => cover.classList.add("revealing"), 1900); // envelope drifts away
-    setTimeout(() => {
-      document.body.classList.remove("locked");
-      document.body.classList.add("opened");
-      window.scrollTo(0, 0);
-    }, 2200);
-    setTimeout(() => (cover.style.display = "none"), 3300);
-  };
-  $("#openBtn").addEventListener("click", openInvitation);
-  $(".env-flap-wrap").addEventListener("click", openInvitation);
+    setTimeout(() => ($("#cover").style.display = "none"), 1200);
+  });
 
   if (C.video) {
     const v = $("#preVideo");

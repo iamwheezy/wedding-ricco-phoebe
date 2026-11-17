@@ -176,10 +176,10 @@
           <input type="text" name="name" id="f-name" required maxlength="80" autocomplete="name" placeholder="Your full name">
         </label>
         <fieldset>
-          <legend>Will you attend?</legend>
+          <legend class="q">Will you be attending our wedding?</legend>
           <div class="choice">
-            <label><input type="radio" name="attendance" value="Attending" checked><span>Joyfully Attending</span></label>
-            <label><input type="radio" name="attendance" value="Not Attending"><span>Regretfully Decline</span></label>
+            <label><input type="radio" name="attendance" value="Attending" checked><span>Definitely, yes!</span></label>
+            <label><input type="radio" name="attendance" value="Not Attending"><span>Sorry, can&rsquo;t make it!</span></label>
           </div>
         </fieldset>
         <label id="guestsField">Number of Guests
@@ -229,7 +229,11 @@
     <section class="closing">
       <div class="parallax" style="background-image:url('assets/img/closing.webp');background-position:40% 50%"></div>
       <div class="closing-inner reveal">
-        <p class="light">It would be an honor and a joy to have you with us as we begin our forever together.</p>
+        <div class="story">
+          <p>Some love stories begin with a grand gesture; ours began quietly, with a simple hello that grew through endless conversations, shared laughter, and steadfast support. Along the way, we found more than love: we found a best friend, a safe place, and a shared dream for the years ahead.</p>
+          <p>Brought together by God&rsquo;s perfect plan, strengthened by His grace, and soon united in the holy sacrament of marriage, our two hearts have found their home in one another.</p>
+          <p class="story-end">It would be an honor and a joy to have you with us as we begin our forever together.</p>
+        </div>
         <p class="eyebrow light">With love,</p>
         <h2 class="script names light"><span data-bind="groom.nickname"></span> &amp; <span data-bind="bride.nickname"></span></h2>
         <p class="light small">28 · 12 · 2026</p>
