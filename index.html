@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
   <link rel="preload" as="image" href="assets/img/cover.webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261117c">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261117e">
 </head>
 <body class="locked">
 
@@ -52,16 +52,16 @@
         <h2 class="script names light"><span data-bind="groom.nickname"></span> &amp; <span data-bind="bride.nickname"></span></h2>
         <p class="hero-date light" data-bind="dateText"></p>
       </div>
-      <div class="scroll-hint" aria-hidden="true"><span></span></div>
+      <div class="scroll-hint" aria-hidden="true"><span>Scroll</span><i></i></div>
     </section>
 
     <!-- ===================== QUOTE ===================== -->
     <section class="section quote">
-      <div class="ornament reveal" aria-hidden="true"></div>
+      <img class="flourish reveal" src="assets/svg/flourish.svg" alt="" aria-hidden="true">
       <blockquote class="reveal">
-        “From our first hello to our forever, every moment with you feels like coming home. Today we choose each other, with all our hearts.”
+        “From our first hello to our forever, every moment with you feels like coming home. Now and always, we choose each other, with all our hearts.”
       </blockquote>
-      <div class="ornament flip reveal" aria-hidden="true"></div>
+      <img class="flourish flip reveal" src="assets/svg/flourish.svg" alt="" aria-hidden="true">
     </section>
 
     <!-- ===================== COUPLE ===================== -->
@@ -213,7 +213,7 @@
         <p class="gift-label">Bank Transfer</p>
         <p class="bank" data-bind="bankName"></p>
         <p class="acc" data-bind="bankAccount"></p>
-        <p class="holder">a.n. <span data-bind="bankHolder"></span></p>
+        <p class="holder"><span data-bind="bankHolder"></span></p>
         <button class="btn btn-outline" data-copy="bankAccount">Copy Account Number</button>
       </div>
 
@@ -227,19 +227,47 @@
 
     <!-- ===================== OUR STORY ===================== -->
     <section class="section our-story" id="story">
-      <div class="ornament reveal" aria-hidden="true"></div>
-      <div class="story reveal">
-        <p>Some love stories begin with a grand gesture; ours began quietly, with a simple hello that grew through endless conversations, shared laughter, and steadfast support. Along the way, we found more than love: we found a best friend, a safe place, and a shared dream for the years ahead.</p>
-        <p>Brought together by God&rsquo;s perfect plan, strengthened by His grace, and soon united in the holy sacrament of marriage, our two hearts have found their home in one another.</p>
-        <p class="story-end">It would be an honor and a joy to have you with us as we begin our forever together.</p>
+      <div class="story-card reveal">
+        <img class="corner tl" src="assets/svg/corner.svg" alt="" aria-hidden="true">
+        <img class="corner tr" src="assets/svg/corner.svg" alt="" aria-hidden="true">
+        <img class="corner bl" src="assets/svg/corner.svg" alt="" aria-hidden="true">
+        <img class="corner br" src="assets/svg/corner.svg" alt="" aria-hidden="true">
+        <p class="eyebrow">Our Story</p>
+        <svg class="hearts reveal" viewBox="0 0 200 120" aria-hidden="true">
+          <g fill="none" stroke="#a78a58" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <g transform="translate(78 66) rotate(-14)">
+              <path d="M0 30 C-26 12 -34 -6 -24 -18 C-16 -27 -5 -24 0 -14 C5 -24 16 -27 24 -18 C34 -6 26 12 0 30Z"/>
+              <path d="M0 26 C-22 10 -29 -5 -21 -15 C-14 -22 -5 -20 0 -11" stroke-width=".8" stroke-opacity=".55"/>
+            </g>
+            <g transform="translate(122 62) rotate(12)">
+              <path d="M0 30 C-26 12 -34 -6 -24 -18 C-16 -27 -5 -24 0 -14 C5 -24 16 -27 24 -18 C34 -6 26 12 0 30Z"/>
+              <path d="M0 26 C22 10 29 -5 21 -15 C14 -22 5 -20 0 -11" stroke-width=".8" stroke-opacity=".55"/>
+            </g>
+            <!-- ribbon & bow tying the hearts -->
+            <path d="M58 40 C76 30 104 28 140 34"/>
+            <path d="M140 34 C148 26 160 22 162 28 C164 34 152 36 142 35"/>
+            <path d="M142 35 C150 40 158 48 154 52 C150 55 144 46 141 37"/>
+            <path d="M141 36 C146 46 146 58 140 62" stroke-width="1.1"/>
+            <path d="M141 36 C150 44 158 58 156 66" stroke-width="1.1"/>
+            <circle cx="141" cy="35.5" r="2.4" fill="#a78a58"/>
+          </g>
+          <text x="77" y="72" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="22" fill="#8c7448" transform="rotate(-14 77 66)">R</text>
+          <text x="122" y="69" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-size="22" fill="#8c7448" transform="rotate(12 122 62)">S</text>
+        </svg>
+        <span class="big-quote" aria-hidden="true">&ldquo;</span>
+        <div class="story">
+          <p>Not every love story begins with a grand gesture. Ours started quietly, with a simple hello, then grew through endless conversations, so many laughs, and always having each other&rsquo;s back. Along the way, we found more than love. We found our best friend, our safe place, and a dream we can&rsquo;t wait to build together.</p>
+          <p class="story-faith">By God&rsquo;s grace and perfect timing, we are soon to be united in holy matrimony. Two hearts that finally found home in each other.</p>
+        </div>
+        <img class="flourish" src="assets/svg/flourish.svg" alt="" aria-hidden="true">
       </div>
-      <div class="ornament flip reveal" aria-hidden="true"></div>
     </section>
 
     <!-- ===================== CLOSING ===================== -->
     <section class="closing">
       <div class="parallax" style="background-image:url('assets/img/closing.webp');background-position:40% 50%"></div>
       <div class="closing-inner reveal">
+        <p class="closing-line">It would mean the world to have you with us as we begin this new chapter together.</p>
         <p class="eyebrow light">With love,</p>
         <h2 class="script names light"><span data-bind="groom.nickname"></span> &amp; <span data-bind="bride.nickname"></span></h2>
         <p class="light small">28 · 12 · 2026</p>
@@ -257,7 +285,7 @@
 
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="assets/js/config.js?v=20261117c"></script>
-  <script src="assets/js/main.js?v=20261117c"></script>
+  <script src="assets/js/config.js?v=20261117e"></script>
+  <script src="assets/js/main.js?v=20261117e"></script>
 </body>
 </html>

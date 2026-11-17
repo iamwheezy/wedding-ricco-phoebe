@@ -12,7 +12,7 @@ window.WEDDING = {
   bride: {
     fullName: "Phoebe Syifa Jindra Maharani",
     nickname: "Syifa",
-    parents: "Daughter of Drs. Surono<br>& Mrs. Lindawati",
+    parents: "Daughter of Drs. Surono<br>& Mrs. Linda",
     instagram: ""
   },
 
