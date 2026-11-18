@@ -66,61 +66,49 @@
     if (document.hidden && !audio.paused) { audio.pause(); musicBtn.classList.remove("playing"); audio.dataset.resume = "1"; }
     else if (!document.hidden && audio.dataset.resume) { delete audio.dataset.resume; playMusic(); }
   });
-  /* Envelope intro: tap the seal -> envelope video plays -> petals burst -> zoom into the cover photo */
+  /* Envelope intro: tap -> reveal video plays -> page opens on the cover photo */
   const env = $("#envelope");
   if (env) {
-    const vid = $("#envVideo"), btn = $("#envBtn");
-    const START = 0.7;                       // the envelope starts to move at ~0.9s in the video
-    const T_BURST = 3.6, T_ZOOM = 4.6;       // video seconds: petals burst while the flap rises, then zoom out
-    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let started = false, burst = false, ended = false;
-    const petalBurst = () => {
-      if (burst) return; burst = true;
-      const b = $("#envBurst");
-      for (let i = 0; i < 18; i++) {
-        const p = document.createElement("i"), a = -Math.PI / 2 + (Math.random() - 0.5) * 2.4, r = 140 + Math.random() * 220;
-        p.style.setProperty("--x", Math.cos(a) * r + "px"); p.style.setProperty("--y", Math.sin(a) * r + 60 + "px");
-        p.style.setProperty("--r", (Math.random() * 540 - 270) + "deg"); p.style.setProperty("--w", 16 + Math.random() * 14 + "px");
-        p.style.animationDelay = Math.random() * 0.25 + "s"; b.appendChild(p);
-      }
+    const vid = $("#envVideo");
+    let envOpened = false;
+    // keep the pulsing ring and petal burst on top of the wax seal, whatever the screen size
+    const SEAL_X = 0.3465, SEAL_Y = 0.5007, SEAL_W = 0.29, VW = 720, VH = 1280;
+    const placeSeal = () => {
+      const w = env.clientWidth, h = env.clientHeight, s = Math.max(w / VW, h / VH);
+      const offX = (w - VW * s) * 0.35, offY = (h - VH * s) / 2;   // matches object-position:35% 50%
+      env.style.setProperty("--sx", offX + SEAL_X * VW * s + "px");
+      env.style.setProperty("--sy", offY + SEAL_Y * VH * s + "px");
+      env.style.setProperty("--sw", SEAL_W * VW * s + "px");
     };
+    placeSeal(); addEventListener("resize", placeSeal);
     const finish = () => {
-      if (ended) return; ended = true;
-      env.classList.add("zoom");
-      setTimeout(() => env.classList.add("gone"), 500);
-      setTimeout(() => (env.style.display = "none"), 1500);
+      if (env.classList.contains("gone")) return;
+      env.classList.add("gone");
+      $("#cover").classList.add("static");
+      document.body.classList.remove("locked");
+      document.body.classList.add("opened");
+      window.scrollTo(0, 0);
+      const pt = $("#petals"); if (pt) pt.classList.add("fade");
+      setTimeout(() => { env.style.display = "none"; const p = $("#petals"); if (p) p.remove(); }, 2300);
     };
-    const tick = () => {                      // follow the video clock so the effects line up with the animation
-      if (ended) return;
-      const t = vid.currentTime;
-      if (t >= T_BURST) petalBurst();
-      if (t >= T_ZOOM) { finish(); return; }
-      requestAnimationFrame(tick);
-    };
-    // park the video on the closed-envelope frame until the guest taps
-    const park = () => { try { vid.currentTime = START; } catch (_) {} };
-    if (vid.readyState >= 1) park(); else vid.addEventListener("loadedmetadata", park, { once: true });
-    btn.addEventListener("click", () => {
-      if (started) return; started = true;
+    $("#envBtn").addEventListener("click", () => {
+      if (envOpened) return; envOpened = true;
       playMusic();
-      env.classList.add("play");              // hides the title / hint and the seal ring
-      // safety net: a guest must never get stuck on the envelope screen (slow network, blocked video, ...)
-      setTimeout(() => { petalBurst(); finish(); }, 9000);
-      if (reduce) { finish(); return; }
-      park();
-      const p = vid.play();
-      if (p && p.catch) p.catch(() => { petalBurst(); setTimeout(finish, 700); });   // video blocked / unsupported
-      requestAnimationFrame(tick);
+      env.classList.add("opening");
+      const b = $("#envBurst");
+      for (let i = 0; i < 16; i++) {
+        const p = document.createElement("i"), a = (Math.random() - 0.5) * Math.PI * 1.6, r = 120 + Math.random() * 200;
+        p.style.setProperty("--x", Math.cos(a) * r + "px"); p.style.setProperty("--y", Math.sin(a) * r + "px");
+        p.style.setProperty("--r", (Math.random() * 540 - 270) + "deg"); p.style.setProperty("--w", 16 + Math.random() * 14 + "px");
+        p.style.animationDelay = 0.4 + Math.random() * 0.4 + "s"; b.appendChild(p);
+      }
+      const pr = vid.play();
+      if (pr && pr.catch) pr.catch(() => finish());               // if the video can't play, just open
+      vid.addEventListener("timeupdate", () => { if (vid.currentTime > 2.2) finish(); });
+      vid.addEventListener("ended", finish);
+      setTimeout(finish, 4500);                                   // safety net
     });
   }
-  /* From the cover photo: swipe up / scroll / tap continues into the invitation */
-  const cover = $("#cover");
-  const goIn = () => { if (document.body.classList.contains("locked")) $("#openBtn").click(); };
-  let ty = null;
-  cover.addEventListener("touchstart", (e) => (ty = e.touches[0].clientY), { passive: true });
-  cover.addEventListener("touchend", (e) => { if (ty !== null && ty - e.changedTouches[0].clientY > 40) goIn(); ty = null; });
-  cover.addEventListener("wheel", (e) => { if (e.deltaY > 10) goIn(); }, { passive: true });
-  cover.addEventListener("click", goIn);
 
   $("#openBtn").addEventListener("click", () => {
     $("#cover").classList.add("opened");
