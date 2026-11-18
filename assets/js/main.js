@@ -83,8 +83,10 @@
     placeSeal(); addEventListener("resize", placeSeal);
     const finish = () => {
       if (env.classList.contains("gone")) return;
+      const cv = $("#cover");
+      cv.classList.add("static", "enter");                      // cover photo eases in under the fading envelope
+      void cv.offsetWidth;
       env.classList.add("gone");
-      $("#cover").classList.add("static");
       document.body.classList.remove("locked");
       document.body.classList.add("opened");
       window.scrollTo(0, 0);
@@ -104,9 +106,9 @@
       }
       const pr = vid.play();
       if (pr && pr.catch) pr.catch(() => finish());               // if the video can't play, just open
-      vid.addEventListener("timeupdate", () => { if (vid.currentTime > 2.2) finish(); });
+      vid.addEventListener("timeupdate", () => { if (vid.currentTime > 2.15) finish(); });  // start the cross-fade while the flap settles
       vid.addEventListener("ended", finish);
-      setTimeout(finish, 4500);                                   // safety net
+      setTimeout(finish, 5000);                                   // safety net
     });
   }
 
