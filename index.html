@@ -13,10 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/envelope/c_flap.webp">
-  <link rel="preload" as="image" href="assets/envelope/c_body.webp">
+  <link rel="preload" as="image" href="assets/envelope/reveal-poster.webp">
   <link rel="preload" as="image" href="assets/img/cover.webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261119c">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261119d">
 </head>
 <body class="locked">
 
@@ -27,16 +26,11 @@
 
   <!-- ===================== ENVELOPE ===================== -->
   <section id="envelope" class="envelope" aria-label="Open the invitation">
-    <div class="env-flash" aria-hidden="true"></div>
+    <video class="env-video" id="envVideo" src="assets/envelope/reveal.mp4" poster="assets/envelope/reveal-poster.webp"
+           muted playsinline preload="auto" disablepictureinpicture></video>
+    <button class="env-tap" id="envBtn" aria-label="Open the invitation"></button>
+    <span class="seal-ring" id="sealRing" aria-hidden="true"></span>
     <div class="env-burst" id="envBurst" aria-hidden="true"></div>
-    <p class="env-top"><span class="eyebrow">The Wedding of</span><span class="script env-names">Ricco &amp; Syifa</span></p>
-    <button class="env-stage" id="envBtn" aria-label="Open envelope"><span class="env-float">
-      <img class="env-layer o-flap" src="assets/envelope/o_flap.webp" alt="">
-      <img class="env-layer o-body" src="assets/envelope/o_body.webp" alt="">
-      <img class="env-layer c-body" src="assets/envelope/c_body.webp" alt="">
-      <img class="env-layer c-flap" src="assets/envelope/c_flap.webp" alt="">
-      <span class="seal-ring" aria-hidden="true"></span>
-    </span></button>
     <p class="env-hint" aria-hidden="true">
       <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M9 11.24V7.5a2.5 2.5 0 0 1 5 0v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74Zm9.84 4.63-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38Z"/></svg>
       Tap the seal to open
@@ -95,23 +89,33 @@
       <p class="lead reveal">With joyful hearts and the blessing of our families, we invite you to celebrate our wedding.</p>
 
       <div class="person reveal">
-        <div class="arch-wrap"><img class="vine" src="assets/orn/vine.svg" alt=""><div class="arch"><img src="assets/img/groom.webp" alt="The groom" loading="lazy"></div></div>
-        <h3 class="script" data-bind="groom.nickname"></h3>
-        <p class="fullname" data-bind="groom.fullName"></p>
-        <p class="parents" data-bind-html="groom.parents"></p>
-        <a class="ig" data-ig="groom" target="_blank" rel="noopener" hidden>Instagram</a>
-      </div>
-
-      <div class="amp-row"><img class="orn rings" src="assets/orn/rings.webp" alt=""><div class="amp script reveal">&amp;</div><img class="orn bowr" src="assets/orn/bow_r.webp" alt=""></div>
-
-      <div class="person reveal">
         <div class="arch-wrap"><img class="vine" src="assets/orn/vine.svg" alt=""><div class="arch"><img src="assets/img/bride.webp" alt="The bride" loading="lazy"></div></div>
         <h3 class="script" data-bind="bride.nickname"></h3>
         <p class="fullname" data-bind="bride.fullName"></p>
         <p class="parents" data-bind-html="bride.parents"></p>
         <a class="ig" data-ig="bride" target="_blank" rel="noopener" hidden>Instagram</a>
       </div>
+
+      <div class="amp-row"><img class="orn rings" src="assets/orn/rings.webp" alt=""><div class="amp script reveal">&amp;</div><img class="orn bowr" src="assets/orn/bow_r.webp" alt=""></div>
+
+      <div class="person reveal">
+        <div class="arch-wrap"><img class="vine" src="assets/orn/vine.svg" alt=""><div class="arch"><img src="assets/img/groom.webp" alt="The groom" loading="lazy"></div></div>
+        <h3 class="script" data-bind="groom.nickname"></h3>
+        <p class="fullname" data-bind="groom.fullName"></p>
+        <p class="parents" data-bind-html="groom.parents"></p>
+        <a class="ig" data-ig="groom" target="_blank" rel="noopener" hidden>Instagram</a>
+      </div>
       <img class="orn bowl" src="assets/orn/bow_l.webp" alt=""><img class="orn bq" src="assets/orn/bouquet.webp" alt="">
+    </section>
+
+    <!-- ===================== VERSE ===================== -->
+    <section class="section verse">
+      <img class="flourish reveal" src="assets/svg/flourish.svg" alt="" aria-hidden="true">
+      <blockquote class="reveal">
+        &ldquo;So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate.&rdquo;
+        <cite>Matthew 19:6</cite>
+      </blockquote>
+      <img class="flourish flip reveal" src="assets/svg/flourish.svg" alt="" aria-hidden="true">
     </section>
 
     <!-- ===================== COUNTDOWN ===================== -->
@@ -308,7 +312,7 @@
 
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="assets/js/config.js?v=20261119c"></script>
-  <script src="assets/js/main.js?v=20261119c"></script>
+  <script src="assets/js/config.js?v=20261119d"></script>
+  <script src="assets/js/main.js?v=20261119d"></script>
 </body>
 </html>

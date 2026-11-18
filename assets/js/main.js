@@ -68,7 +68,7 @@
   });
   /* Envelope intro: tap -> reveal video plays -> page opens on the cover photo */
   const env = $("#envelope");
-  if (env) {
+  if (env && $("#envVideo")) {
     const vid = $("#envVideo");
     let envOpened = false;
     // keep the pulsing ring and petal burst on top of the wax seal, whatever the screen size
