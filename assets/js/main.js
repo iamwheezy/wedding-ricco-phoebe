@@ -66,6 +66,30 @@
     if (document.hidden && !audio.paused) { audio.pause(); musicBtn.classList.remove("playing"); audio.dataset.resume = "1"; }
     else if (!document.hidden && audio.dataset.resume) { delete audio.dataset.resume; playMusic(); }
   });
+  /* Envelope intro: click -> flap opens -> cover photo */
+  const env = $("#envelope");
+  if (env) {
+    let envOpened = false;
+    // decode all envelope layers up front so the first frame of the animation never stutters
+    $$(".env-layer", env).forEach((im) => im.decode && im.decode().catch(() => {}));
+    $("#envBtn").addEventListener("click", () => {
+      if (envOpened) return; envOpened = true;
+      playMusic();
+      env.classList.add("opening");
+      setTimeout(() => env.classList.add("zoom"), 1350);
+      setTimeout(() => env.classList.add("gone"), 1900);
+      setTimeout(() => (env.style.display = "none"), 2900);
+    });
+  }
+  /* From the cover photo: swipe up / scroll / tap continues into the invitation */
+  const cover = $("#cover");
+  const goIn = () => { if (document.body.classList.contains("locked")) $("#openBtn").click(); };
+  let ty = null;
+  cover.addEventListener("touchstart", (e) => (ty = e.touches[0].clientY), { passive: true });
+  cover.addEventListener("touchend", (e) => { if (ty !== null && ty - e.changedTouches[0].clientY > 40) goIn(); ty = null; });
+  cover.addEventListener("wheel", (e) => { if (e.deltaY > 10) goIn(); }, { passive: true });
+  cover.addEventListener("click", goIn);
+
   $("#openBtn").addEventListener("click", () => {
     $("#cover").classList.add("opened");
     document.body.classList.remove("locked");
