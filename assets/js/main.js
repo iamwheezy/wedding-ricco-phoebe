@@ -66,36 +66,51 @@
     if (document.hidden && !audio.paused) { audio.pause(); musicBtn.classList.remove("playing"); audio.dataset.resume = "1"; }
     else if (!document.hidden && audio.dataset.resume) { delete audio.dataset.resume; playMusic(); }
   });
-  /* Envelope intro: click -> flap opens -> cover photo */
+  /* Envelope intro: tap the seal -> envelope video plays -> petals burst -> zoom into the cover photo */
   const env = $("#envelope");
   if (env) {
-    let envOpened = false;
-    // decode all envelope layers up front so the first frame of the animation never stutters
-    $$(".env-layer", env).forEach((im) => im.decode && im.decode().catch(() => {}));
-    // size the sideways envelope so it fills the phone screen
-    const fitEnv = () => {
-      const st = $("#envBtn"), S = st.offsetWidth;
-      const k = Math.min((innerWidth * 0.94) / (S * 0.597), (innerHeight * 0.62) / (S * 0.89));
-      env.style.setProperty("--k", Math.max(1, k).toFixed(3));
+    const vid = $("#envVideo"), btn = $("#envBtn");
+    const START = 0.7;                       // the envelope starts to move at ~0.9s in the video
+    const T_BURST = 3.6, T_ZOOM = 4.6;       // video seconds: petals burst while the flap rises, then zoom out
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let started = false, burst = false, ended = false;
+    const petalBurst = () => {
+      if (burst) return; burst = true;
+      const b = $("#envBurst");
+      for (let i = 0; i < 18; i++) {
+        const p = document.createElement("i"), a = -Math.PI / 2 + (Math.random() - 0.5) * 2.4, r = 140 + Math.random() * 220;
+        p.style.setProperty("--x", Math.cos(a) * r + "px"); p.style.setProperty("--y", Math.sin(a) * r + 60 + "px");
+        p.style.setProperty("--r", (Math.random() * 540 - 270) + "deg"); p.style.setProperty("--w", 16 + Math.random() * 14 + "px");
+        p.style.animationDelay = Math.random() * 0.25 + "s"; b.appendChild(p);
+      }
     };
-    fitEnv(); addEventListener("resize", fitEnv);
-    $("#envBtn").addEventListener("click", () => {
-      if (envOpened) return; envOpened = true;
+    const finish = () => {
+      if (ended) return; ended = true;
+      env.classList.add("zoom");
+      setTimeout(() => env.classList.add("gone"), 500);
+      setTimeout(() => (env.style.display = "none"), 1500);
+    };
+    const tick = () => {                      // follow the video clock so the effects line up with the animation
+      if (ended) return;
+      const t = vid.currentTime;
+      if (t >= T_BURST) petalBurst();
+      if (t >= T_ZOOM) { finish(); return; }
+      requestAnimationFrame(tick);
+    };
+    // park the video on the closed-envelope frame until the guest taps
+    const park = () => { try { vid.currentTime = START; } catch (_) {} };
+    if (vid.readyState >= 1) park(); else vid.addEventListener("loadedmetadata", park, { once: true });
+    btn.addEventListener("click", () => {
+      if (started) return; started = true;
       playMusic();
-      env.classList.add("turn");                                   // envelope spins upright
-      setTimeout(() => {                                           // petals burst out as the flap opens
-        const b = $("#envBurst");
-        for (let i = 0; i < 18; i++) {
-          const p = document.createElement("i"), a = -Math.PI / 2 + (Math.random() - 0.5) * 2.4, r = 140 + Math.random() * 220;
-          p.style.setProperty("--x", Math.cos(a) * r + "px"); p.style.setProperty("--y", Math.sin(a) * r + 60 + "px");
-          p.style.setProperty("--r", (Math.random() * 540 - 270) + "deg"); p.style.setProperty("--w", 16 + Math.random() * 14 + "px");
-          p.style.animationDelay = Math.random() * 0.25 + "s"; b.appendChild(p);
-        }
-      }, 1500);
-      setTimeout(() => env.classList.add("opening"), 1050);        // flap opens
-      setTimeout(() => env.classList.add("zoom"), 2450);
-      setTimeout(() => env.classList.add("gone"), 2950);
-      setTimeout(() => (env.style.display = "none"), 3950);
+      env.classList.add("play");              // hides the title / hint and the seal ring
+      // safety net: a guest must never get stuck on the envelope screen (slow network, blocked video, ...)
+      setTimeout(() => { petalBurst(); finish(); }, 9000);
+      if (reduce) { finish(); return; }
+      park();
+      const p = vid.play();
+      if (p && p.catch) p.catch(() => { petalBurst(); setTimeout(finish, 700); });   // video blocked / unsupported
+      requestAnimationFrame(tick);
     });
   }
   /* From the cover photo: swipe up / scroll / tap continues into the invitation */

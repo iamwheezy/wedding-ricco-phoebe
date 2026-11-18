@@ -13,10 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="assets/envelope/c_flap.webp">
-  <link rel="preload" as="image" href="assets/envelope/c_body.webp">
+  <link rel="preload" as="image" href="assets/envelope/envelope-poster.webp">
   <link rel="preload" as="image" href="assets/img/cover.webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261119b">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261119c">
 </head>
 <body class="locked">
 
@@ -31,10 +30,9 @@
     <div class="env-burst" id="envBurst" aria-hidden="true"></div>
     <p class="env-top"><span class="eyebrow">The Wedding of</span><span class="script env-names">Ricco &amp; Syifa</span></p>
     <button class="env-stage" id="envBtn" aria-label="Open envelope"><span class="env-float">
-      <img class="env-layer o-flap" src="assets/envelope/o_flap.webp" alt="">
-      <img class="env-layer o-body" src="assets/envelope/o_body.webp" alt="">
-      <img class="env-layer c-body" src="assets/envelope/c_body.webp" alt="">
-      <img class="env-layer c-flap" src="assets/envelope/c_flap.webp" alt="">
+      <video class="env-video" id="envVideo" poster="assets/envelope/envelope-poster.webp" muted playsinline webkit-playsinline preload="auto" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true">
+        <source src="assets/envelope/envelope-open.mp4" type="video/mp4">
+      </video>
       <span class="seal-ring" aria-hidden="true"></span>
     </span></button>
     <p class="env-hint" aria-hidden="true">
@@ -308,7 +306,7 @@
 
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="assets/js/config.js?v=20261119b"></script>
-  <script src="assets/js/main.js?v=20261119b"></script>
+  <script src="assets/js/config.js?v=20261119c"></script>
+  <script src="assets/js/main.js?v=20261119c"></script>
 </body>
 </html>
