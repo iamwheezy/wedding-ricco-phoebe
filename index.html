@@ -16,21 +16,31 @@
   <link rel="preload" as="image" href="assets/envelope/c_flap.webp">
   <link rel="preload" as="image" href="assets/envelope/c_body.webp">
   <link rel="preload" as="image" href="assets/img/cover.webp">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261118d">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261119b">
 </head>
 <body class="locked">
 
+  <!-- falling petals -->
+  <div class="petals" id="petals" aria-hidden="true"></div>
   <!-- floating sparkles -->
   <div class="sparkles" aria-hidden="true"></div>
 
   <!-- ===================== ENVELOPE ===================== -->
   <section id="envelope" class="envelope" aria-label="Open the invitation">
-    <button class="env-stage" id="envBtn" aria-label="Open envelope">
+    <div class="env-flash" aria-hidden="true"></div>
+    <div class="env-burst" id="envBurst" aria-hidden="true"></div>
+    <p class="env-top"><span class="eyebrow">The Wedding of</span><span class="script env-names">Ricco &amp; Syifa</span></p>
+    <button class="env-stage" id="envBtn" aria-label="Open envelope"><span class="env-float">
       <img class="env-layer o-flap" src="assets/envelope/o_flap.webp" alt="">
       <img class="env-layer o-body" src="assets/envelope/o_body.webp" alt="">
       <img class="env-layer c-body" src="assets/envelope/c_body.webp" alt="">
       <img class="env-layer c-flap" src="assets/envelope/c_flap.webp" alt="">
-    </button>
+      <span class="seal-ring" aria-hidden="true"></span>
+    </span></button>
+    <p class="env-hint" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M9 11.24V7.5a2.5 2.5 0 0 1 5 0v3.74c1.21-.81 2-2.18 2-3.74C16 5.01 13.99 3 11.5 3S7 5.01 7 7.5c0 1.56.79 2.93 2 3.74Zm9.84 4.63-4.54-2.26c-.17-.07-.35-.11-.54-.11H13v-6c0-.83-.67-1.5-1.5-1.5S10 6.67 10 7.5v10.74l-3.43-.72c-.08-.01-.15-.03-.24-.03-.31 0-.59.13-.79.33l-.79.8 4.94 4.94c.27.27.65.44 1.06.44h6.79c.75 0 1.33-.55 1.44-1.28l.75-5.27c.01-.07.02-.14.02-.2 0-.62-.38-1.16-.91-1.38Z"/></svg>
+      Tap the seal to open
+    </p>
   </section>
 
   <!-- ===================== COVER ===================== -->
@@ -298,7 +308,7 @@
 
   <div class="toast" id="toast" role="status"></div>
 
-  <script src="assets/js/config.js?v=20261118d"></script>
-  <script src="assets/js/main.js?v=20261118d"></script>
+  <script src="assets/js/config.js?v=20261119b"></script>
+  <script src="assets/js/main.js?v=20261119b"></script>
 </body>
 </html>

@@ -72,13 +72,30 @@
     let envOpened = false;
     // decode all envelope layers up front so the first frame of the animation never stutters
     $$(".env-layer", env).forEach((im) => im.decode && im.decode().catch(() => {}));
+    // size the sideways envelope so it fills the phone screen
+    const fitEnv = () => {
+      const st = $("#envBtn"), S = st.offsetWidth;
+      const k = Math.min((innerWidth * 0.94) / (S * 0.597), (innerHeight * 0.62) / (S * 0.89));
+      env.style.setProperty("--k", Math.max(1, k).toFixed(3));
+    };
+    fitEnv(); addEventListener("resize", fitEnv);
     $("#envBtn").addEventListener("click", () => {
       if (envOpened) return; envOpened = true;
       playMusic();
-      env.classList.add("opening");
-      setTimeout(() => env.classList.add("zoom"), 1350);
-      setTimeout(() => env.classList.add("gone"), 1900);
-      setTimeout(() => (env.style.display = "none"), 2900);
+      env.classList.add("turn");                                   // envelope spins upright
+      setTimeout(() => {                                           // petals burst out as the flap opens
+        const b = $("#envBurst");
+        for (let i = 0; i < 18; i++) {
+          const p = document.createElement("i"), a = -Math.PI / 2 + (Math.random() - 0.5) * 2.4, r = 140 + Math.random() * 220;
+          p.style.setProperty("--x", Math.cos(a) * r + "px"); p.style.setProperty("--y", Math.sin(a) * r + 60 + "px");
+          p.style.setProperty("--r", (Math.random() * 540 - 270) + "deg"); p.style.setProperty("--w", 16 + Math.random() * 14 + "px");
+          p.style.animationDelay = Math.random() * 0.25 + "s"; b.appendChild(p);
+        }
+      }, 1500);
+      setTimeout(() => env.classList.add("opening"), 1050);        // flap opens
+      setTimeout(() => env.classList.add("zoom"), 2450);
+      setTimeout(() => env.classList.add("gone"), 2950);
+      setTimeout(() => (env.style.display = "none"), 3950);
     });
   }
   /* From the cover photo: swipe up / scroll / tap continues into the invitation */
@@ -151,6 +168,20 @@
         animationDuration: 9 + Math.random() * 12 + "s", animationDelay: Math.random() * 12 + "s"
       });
       sp.appendChild(el);
+    }
+  }
+
+  /* ---------- 7b. Falling petals ---------- */
+  const pet = $("#petals");
+  if (pet && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    for (let i = 0; i < 14; i++) {
+      const el = document.createElement("i");
+      if (i % 4 === 0) el.className = "b";
+      const set = (k, v) => el.style.setProperty(k, v);
+      set("--l", Math.random() * 100 + "%"); set("--w", 15 + Math.random() * 13 + "px");
+      set("--d", 11 + Math.random() * 9 + "s"); set("--dl", -Math.random() * 18 + "s");
+      set("--s", 18 + Math.random() * 30 + "px"); set("--o", (0.75 + Math.random() * 0.25).toFixed(2));
+      pet.appendChild(el);
     }
   }
 
