@@ -22,11 +22,11 @@ window.WEDDING = {
   eventEnd:   "2026-12-28T16:00:00+07:00",
   eventTitle: "Wedding Reception",
   dateText:   "Monday, 28 December 2026",
-  timeText:   "13.00 WIB until Finish",
+  timeText:   "1:00 PM onwards (GMT+7)",
 
   // ---- Venue --------------------------------------------------
-  venueName: "Gedung MCC",
-  venueAddress: "Jl. Kapten Mulyadi No.17, Manggung, Cangakan, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57716, Indonesia",
+  venueName: "MABES Convention Center (MCC)",
+  venueAddress: "17 Kapten Mulyadi Street, Manggung, Cangakan, Karanganyar District, Karanganyar Regency, Central Java 57716, Indonesia",
   // Text Google Maps searches for. Replace with a shared Maps link if you prefer.
   mapsQuery: "Jl. Kapten Mulyadi No.17, Cangakan, Karanganyar, Jawa Tengah 57716",
   mapsLink: "", // optional: paste a https://maps.app.goo.gl/... link to override
@@ -35,7 +35,7 @@ window.WEDDING = {
   bankName: "BCA",
   bankAccount: "0153823992",
   bankHolder: "Syifa J",
-  giftAddress: "Jl. Mujair I No.03/07, Tegalasri, Bejen, Kec. Karanganyar, Kabupaten Karanganyar, Jawa Tengah 57711",
+  giftAddress: "Jl. Mujair I No. 03/07, Tegalasri, Bejen, Karanganyar District, Karanganyar Regency, Central Java 57711, Indonesia",
   giftRecipient: "Syifa & Ricco",
 
   // ---- RSVP / Google Sheets ----------------------------------
